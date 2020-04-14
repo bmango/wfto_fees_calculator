@@ -1,0 +1,24 @@
+{
+  "countries": {
+    "address": "/sites/all/themes/wfto_2019/js/fees/data/countries.json"
+  },
+  "regions": {
+    "address": "api/regions"
+  },
+  "membershipTypes": {
+    "address": "api/membershipTypes"
+  },
+  "membershipStatuses": {
+    "address": "api/membershipStatuses"
+  },
+  "memberSearch": {
+    "address": "api/membersearch",
+    "parameters": {
+      "name": "name",
+      "country": "country",
+      "region": "region",
+      "type": "type",
+      "status": "status"
+    }
+  }
+}
