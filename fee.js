@@ -1,6 +1,3 @@
-//alert('hi');
-
-
       ko.extenders.numeric = function (target, precision) {
         //create a writable computed observable to intercept writes to our observable
         var result = ko.pureComputed({
@@ -145,7 +142,7 @@
           if (+turnover < fees.Fto.middleBound) {
             return +turnover * fees.Fto.middleBoundMultiplier;
           }
-          var fee = fees.Fto.aboveMiddleBoundFee + (Math.round(turnover / fees.Fto.middleBound) -
+          var fee = fees.Fto.aboveMiddleBoundFee + (Math.floor(turnover / fees.Fto.middleBound) -
               1) * fees.Fto.multipleTimesAboveFee;
           return fee > fees.Fto.maximumFee[regionId] ? fees.Fto.maximumFee[regionId] :
               fee;
