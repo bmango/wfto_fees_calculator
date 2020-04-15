@@ -1,34 +1,29 @@
-      ko.extenders.numeric = function (target, precision) {
-        //create a writable computed observable to intercept writes to our observable
-        var result = ko.pureComputed({
-          read: target, //always return the original observables value
-          write: function (newValue) {
-            var current = target(),
-                roundingMultiplier = Math.pow(10, precision),
-                newValueAsNum = isNaN(newValue) ? 0 : +newValue,
-                valueToWrite = Math.round(newValueAsNum * roundingMultiplier) /
-                    roundingMultiplier;
+ko.extenders.numeric = function (target) {
+  //create a writable computed observable to intercept writes to our observable
+  var result = ko.pureComputed({
+    read: target, //always return the original observables value
+    write: function (newValue) {
+      var current = target(),
+          newValueStripped = newValue === undefined ? '': newValue.replace(/[.,]/g, ''),
+          valueToWrite = isNaN(newValueStripped) ? '' : +newValueStripped;
 
-            //only write if it changed
-            if (valueToWrite !== current) {
-              target(valueToWrite);
-            } else {
-              //if the rounded value is the same, but a different value was written, force a notification for the current field
-              if (newValue !== current) {
-                target.notifySubscribers(valueToWrite);
-              }
-            }
-          }
-        }).extend({
-          notify: 'always'
-        });
+        if(valueToWrite === 0) // note: this allows entries like 000 or empty
+        {
+          valueToWrite = newValueStripped;
+        }
+        target(valueToWrite);
+        target.notifySubscribers(valueToWrite);
+    }
+  }).extend({
+    notify: 'always'
+  });
 
-        //initialize with current value to make sure it is rounded appropriately
-        result(target());
+  //initialize with current value to make sure it is rounded appropriately
+  result(target());
 
-        //return the new computed observable
-        return result;
-      };
+  //return the new computed observable
+  return result;
+};
 
       function KeyValue(key, value) {
         this.Key = ko.observable(key);
@@ -235,7 +230,7 @@
               new KeyValue("IA", "Individual Associates (IA)")
             ]
         );
-        this.turnover = ko.observable();
+        this.turnover = ko.observable().extend({ numeric });
         this.revenue = ko.observable(0);
         this.associate = ko.observable();
         this.member = ko.observable();
