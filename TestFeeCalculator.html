@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    serviceLocation = "conf/memberapi.test.json";
+</script>
+<script src="jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="knockout-3.4.0.js" type="text/javascript"></script>
+<script src="fee.js" type="text/javascript"></script>
+<script src="services.js" type="text/javascript"></script>
+
+<body>
+    <h2 class="field field-name-line1 field-type-text field-label-hidden">
+        Test Fee Calculator </h2>
+
+    <div class="field field-name-field-description field-type-text-long field-label-hidden">
+        <div class="calculator">
+            <div class="calc">
+                <div class="form-horizontal">
+
+                    <div class="control-group">
+
+                    </div>
+                    <div class="control-group" data-bind="visible: associateStatus">
+                        <label>Are you applying for Individual Associate or Associate Organisation status?</label>
+                        Individual Associate <input name="associateStatus" type="radio" value="individual"
+                            data-bind="checked: associateStatusApplyingFor" />
+                        Associate Organisation <input name="associateStatus" value="organisation" type="radio"
+                            data-bind="checked: associateStatusApplyingFor" />
+                    </div>
+                    <div class="control-group" data-bind="visible: associateStatus() && associateOrganisationStatus()">
+                        <label>What are your gross revenues?</label>
+                        <div for="revenue" class="control-label">Gross revenues €</div>
+                        <div class="controls">
+                            <input id="revenue" type="text" data-bind="value: revenue, valueUpdate: 'keyup'" />
+                        </div>
+                    </div>
+                    <div class="control-group" data-bind="visible: associateStatus() && associateIndividualStatus()">
+                        <label>Are you applying for Normal or Students and the unwaged?</label>
+                        Normal <input id="individualAssociate" name="individualAssociate" type="radio" value="normal"
+                            data-bind="checked: individualAssociateStatusApplyingFor" />
+                        Students and the unwaged <input id="individualAssociate" name="individualAssociate"
+                            value="student" type="radio" data-bind="checked: individualAssociateStatusApplyingFor" />
+                    </div>
+                    <div data-bind="visible: membershipStatus">
+                        <label>What are your gross sales / turnover?</label>
+                        <div class="control-group">
+                            <div for="turnover" class="control-label">Gross sales / turnover €</div>
+                            <div class="controls">
+                                <input id="turnover" type="text" data-bind="value: turnover, valueUpdate: 'keyup'" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label>Please select your country to determine your WFTO region</label>
+                            <div for="country" class="control-label">Country</div>
+                            <div class="controls">
+                                <select id="country"
+                                    data-bind="options: countries.values, optionsText: function(item){return item.Name;}, optionsValue: function(item){return item.RegionId;}, value: countries.selected">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-bind="visible: fee() !== undefined">
+                    <h3>Calculated Fee</h3>
+                    <div class="row-fluid">
+                        <div class="span2">Membership fee:</div>
+                        <div class="span10">€ <b data-bind="text: fee"></b></div>
+                    </div>
+                    <div class="row-fluid" data-bind="visible: regionalFee() !== undefined">
+                        <div class="span2">Regional fee:</div>
+                        <div class="span10">€ <b data-bind="text: regionalFee"></b></div>
+                    </div>
+                    <div class="row-fluid" data-bind="visible: regionalFee() !== undefined && fee() !== undefined">
+                        <div class="span2">Total:</div>
+                        <div class="span10">€ <b data-bind="text: regionalFee() + fee()"></b></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

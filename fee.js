@@ -156,9 +156,12 @@ ko.extenders.numeric = function (target) {
       function FeeModel(feeCalculator) {
         var self = this;
 
+        if(serviceLocation === undefined)
+        {
+          serviceLocation = "/sites/all/themes/wfto_2019/js/fees/conf/memberapi.json";
+        }
 
-
-        var serviceFactory = new ServiceFactory("/sites/all/themes/wfto_2019/js/fees/conf/memberapi.json");
+        var serviceFactory = new ServiceFactory(serviceLocation);
         serviceFactory.onLoaded = function () {
           self.countries = serviceFactory.getCountryService("Select country...");
           self.regionId = self.countries.selected;
@@ -230,7 +233,7 @@ ko.extenders.numeric = function (target) {
               new KeyValue("IA", "Individual Associates (IA)")
             ]
         );
-        this.turnover = ko.observable().extend({ numeric });
+        this.turnover = ko.observable().extend({ numeric: 0 });
         this.revenue = ko.observable(0);
         this.associate = ko.observable();
         this.member = ko.observable();
