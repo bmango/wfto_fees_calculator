@@ -196,7 +196,13 @@
               } else if (self.isFtso() && self.directLinkWithFto() !== undefined) {
                 self.fee(feeCalculator.getFtsoFee(self.revenue(), self.directLinkWithFto() === 'true'));
               }
-              self.regionalFee(feeCalculator.getRegionalFee(self.revenue(), self.regionId()));
+
+              if(self.isFto())
+              {
+                self.regionalFee(feeCalculator.getRegionalFee(self.turnover(), self.regionId()));
+              } else{
+                self.regionalFee(feeCalculator.getRegionalFee(self.revenue(), self.regionId()));
+              }
             }
           };
           self.statusApplyingFor.subscribe(setFee);
