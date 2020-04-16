@@ -9,6 +9,7 @@
         this.Id = ko.observable(data.Id);
         this.Name = ko.observable(data.Name);
         this.RegionId = ko.observable(data.RegionId);
+        this.Importer = ko.observable(data.Importer === undefined? 0 : data.Importer);
       }
 
       function CodeValue(data) {

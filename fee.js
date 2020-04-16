@@ -63,11 +63,8 @@ ko.extenders.numeric = function (target) {
           multipleTimesAboveFee: 350,
           lowerBoundFee: 400,
           maximumFee: {
-            1: 2600,
-            2: 2600,
-            3: 10400,
-            4: 2600,
-            6: 10400
+            0: 2600,
+            1: 10400
           },
         },
         RegionalFees: {
@@ -130,7 +127,7 @@ ko.extenders.numeric = function (target) {
             }
           }
         }
-        this.getFTOFee = function (turnover, regionId) {
+        this.getFTOFee = function (turnover, importer) {
           if (+turnover < fees.Fto.lowerBound) {
             return fees.Fto.lowerBoundFee;
           }
@@ -139,7 +136,7 @@ ko.extenders.numeric = function (target) {
           }
           var fee = fees.Fto.aboveMiddleBoundFee + (Math.floor(turnover / fees.Fto.middleBound) -
               1) * fees.Fto.multipleTimesAboveFee;
-          return fee > fees.Fto.maximumFee[regionId] ? fees.Fto.maximumFee[regionId] :
+          return fee > fees.Fto.maximumFee[importer] ? fees.Fto.maximumFee[importer] :
               fee;
         }
         this.getRegionalFee = function (revenue, regionId) {
@@ -164,10 +161,11 @@ ko.extenders.numeric = function (target) {
         var serviceFactory = new ServiceFactory(serviceLocation);
         serviceFactory.onLoaded = function () {
           self.countries = serviceFactory.getCountryService("Select country...");
-          self.regionId = self.countries.selected;
+          self.country = self.countries.selected;
 
 
           var setFee = function (changed) {
+            var country = self.country();
             self.fee(undefined);
             self.regionalFee(undefined);
 
@@ -183,11 +181,11 @@ ko.extenders.numeric = function (target) {
               }
               return;
             } else if (self.membershipStatus()) {
-              if (self.regionId() === undefined || self.regionId() < 0) {
+              if (country === undefined || country.regionId < 0) {
                 return;
               }
               if (self.isFto()) {
-                fee = feeCalculator.getFTOFee(self.turnover(), self.regionId());
+                fee = feeCalculator.getFTOFee(self.turnover(), country.Importer());
                 self.fee(Math.round(fee * 100) / 100);
               } else if (self.isFtn()) {
                 self.fee(feeCalculator.getFtnFee());
@@ -197,9 +195,9 @@ ko.extenders.numeric = function (target) {
 
               if(self.isFto())
               {
-                self.regionalFee(feeCalculator.getRegionalFee(self.turnover(), self.regionId()));
+                self.regionalFee(feeCalculator.getRegionalFee(self.turnover(), country.RegionId()));
               } else{
-                self.regionalFee(feeCalculator.getRegionalFee(self.revenue(), self.regionId()));
+                self.regionalFee(feeCalculator.getRegionalFee(self.revenue(), country.RegionId()));
               }
             }
           };
@@ -212,7 +210,7 @@ ko.extenders.numeric = function (target) {
           self.revenue.subscribe(setFee);
           self.turnover.subscribe(setFee);
           self.directLinkWithFto.subscribe(setFee);
-          self.regionId.subscribe(setFee);
+          self.country.subscribe(setFee);
 
           self.individualAssociateStatusApplyingFor.subscribe(setFee);
 
@@ -296,7 +294,6 @@ ko.extenders.numeric = function (target) {
       }
 
       jQuery(document).ready(function () {
-        //alert('hi');
         var feeModel = new FeeModel(calc);
         feeModel.onLoaded = function () {
           ko.applyBindings(feeModel);
