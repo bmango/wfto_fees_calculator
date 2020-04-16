@@ -34,7 +34,7 @@
   {"Id":7, "Name":"Indonesia", "RegionId" : 2},
   {"Id":63, "Name":"Israel", "RegionId" : 1},
   {"Id":17, "Name":"Italy", "RegionId" : 3},
-  {"Id":44, "Name":"Japan", "RegionId" : 6},
+  {"Id":44, "Name":"Japan", "RegionId" : 2},
   {"Id":2, "Name":"Kenya", "RegionId" : 1},
   {"Id":27, "Name":"Korea", "RegionId" : 2},
   {"Id":56, "Name":"Laos", "RegionId" : 2},
