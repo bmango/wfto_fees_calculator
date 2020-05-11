@@ -153,12 +153,9 @@ ko.extenders.numeric = function (target) {
       function FeeModel(feeCalculator) {
         var self = this;
 
-        if(serviceLocation === undefined)
-        {
-          serviceLocation = "/sites/all/themes/wfto_2019/js/fees/conf/memberapi.json";
-        }
+        var lServiceLoc = serviceLocation === undefined ? "/sites/all/themes/wfto_2019/js/fees/conf/memberapi.json" : serviceLocation;
 
-        var serviceFactory = new ServiceFactory(serviceLocation);
+        var serviceFactory = new ServiceFactory(lServiceLoc);
         serviceFactory.onLoaded = function () {
           self.countries = serviceFactory.getCountryService("Select country...");
           self.country = self.countries.selected;
