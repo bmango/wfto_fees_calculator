@@ -17,6 +17,7 @@
   {"Id":66, "Name":"China", "RegionId" : 2, "Importer" : 0},
   {"Id":49, "Name":"Colombia", "RegionId" : 4, "Importer" : 0},
   {"Id":64, "Name":"Costa Rica", "RegionId" : 4, "Importer" : 0},
+  {"Id":71, "Name":"Cyprus", "RegionId" : 3, "Importer" : 1},
   {"Id":46, "Name":"Czech Republic", "RegionId" : 3, "Importer" : 1},
   {"Id":37, "Name":"Denmark", "RegionId" : 3, "Importer" : 1},
   {"Id":28, "Name":"Ecuador", "RegionId" : 4, "Importer" : 0},
