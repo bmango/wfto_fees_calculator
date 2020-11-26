@@ -48,6 +48,7 @@
   {"Id":15, "Name":"Nepal", "RegionId" : 2, "Importer" : 0},
   {"Id":20, "Name":"Netherlands", "RegionId" : 3, "Importer" : 1},
   {"Id":60, "Name":"New Zealand / Aotearoa", "RegionId" : 6, "Importer" : 1},
+  {"Id":74, "Name":"Norway", "RegionId" : 3, "Importer" : 1},
   {"Id":69, "Name":"Pakistan", "RegionId" : 2, "Importer" : 0},
   {"Id":23, "Name":"Palestinian Authority", "RegionId" : 1, "Importer" : 0},
   {"Id":48, "Name":"Papua New Guinea", "RegionId" : 6, "Importer" : 1},
@@ -70,6 +71,6 @@
   {"Id":18, "Name":"United Kingdom", "RegionId" : 3, "Importer" : 1},
   {"Id":25, "Name":"United States", "RegionId" : 6, "Importer" : 1},
   {"Id":57, "Name":"Uruguay", "RegionId" : 4, "Importer" : 0},
-  {"Id":34, "Name":"Vietnam", "RegionId" : 2, "Importer" : 0}
+  {"Id":34, "Name":"Vietnam", "RegionId" : 2, "Importer" : 0},
   {"Id":72, "Name":"Zambia", "RegionId" : 1, "Importer" : 0}
 ]
