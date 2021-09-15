@@ -43,6 +43,7 @@
   {"Id":56, "Name":"Laos", "RegionId" : 2, "Importer" : 0},
   {"Id":42, "Name":"Lebanon", "RegionId" : 1, "Importer" : 0},
   {"Id":62, "Name":"Madagascar", "RegionId" : 1, "Importer" : 0},
+  {"Id":77, "Name":"Malaysia", "RegionId" : 2, "Importer" : 0},
   {"Id":51, "Name":"Mexico", "RegionId" : 4, "Importer" : 0},
   {"Id":58, "Name":"Mongolia", "RegionId" : 2, "Importer" : 0},
   {"Id":59, "Name":"Namibia", "RegionId" : 1, "Importer" : 0},
