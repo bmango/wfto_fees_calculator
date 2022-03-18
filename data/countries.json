@@ -38,6 +38,7 @@
   {"Id":17, "Name":"Italy", "RegionId" : 3, "Importer" : 1},
   {"Id":76, "Name":"Ivory Coast", "RegionId" : 1, "Importer" : 0},
   {"Id":44, "Name":"Japan", "RegionId" : 2, "Importer" : 1},
+  {"Id":78, "Name":"Jordan", "RegionId" : 1, "Importer" : 1},
   {"Id":2, "Name":"Kenya", "RegionId" : 1, "Importer" : 0},
   {"Id":27, "Name":"Korea", "RegionId" : 2, "Importer" : 0},
   {"Id":56, "Name":"Laos", "RegionId" : 2, "Importer" : 0},
