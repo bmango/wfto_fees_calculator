@@ -70,6 +70,7 @@
   {"Id":67, "Name":"Taiwan", "RegionId" : 2, "Importer" : 1},
   {"Id":30, "Name":"Tanzania", "RegionId" : 1, "Importer" : 0},
   {"Id":45, "Name":"Thailand", "RegionId" : 2, "Importer" : 0},
+  {"Id":79, "Name":"Turkey", "RegionId" : 1, "Importer" : 0},
   {"Id":36, "Name":"Uganda", "RegionId" : 1, "Importer" : 0},
   {"Id":18, "Name":"United Kingdom", "RegionId" : 3, "Importer" : 1},
   {"Id":25, "Name":"United States", "RegionId" : 6, "Importer" : 1},
